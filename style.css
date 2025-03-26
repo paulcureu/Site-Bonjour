@@ -102,16 +102,23 @@ header .nav li a::after {
 }
 .footer {
   display: flex;
-  background-color: #faf2f2;
+  flex-direction: column;
+  background-color: #ececec;
 }
-.tittle-footer {
-  font-family: "Courier New", monospace;
-  font-size: 26px;
-  letter-spacing: 2px;
-  word-spacing: 2px;
-  color: #000000;
-  font-weight: normal;
-  font-style: italic;
+
+.title-footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 35px;
+  color: rgb(0, 0, 0);
+}
+.description {
+  display: flex;
 }
 @media (max-width: 1100px) {
   .box {
