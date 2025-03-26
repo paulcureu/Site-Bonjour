@@ -20,16 +20,7 @@ section {
   align-items: center;
   padding: 110px 100px;
 }
-@media (max-width: 1000px) {
-  section {
-    padding: 100px 50px;
-  }
-}
-@media (max-width: 600px) {
-  section {
-    padding: 125px 30px;
-  }
-}
+
 header {
   position: absolute;
   top: 0;
@@ -41,10 +32,6 @@ header {
   align-items: center;
   color: #fff;
   padding: 35px 100px 0;
-}
-header a {
-  text-transform: capitalize;
-  font-weight: 900;
 }
 header h2 {
   text-transform: uppercase;
@@ -61,22 +48,7 @@ header .nav li:first-child {
 header .nav li:last-child {
   margin-right: 0;
 }
-@media (max-width: 1000px) {
-  header {
-    padding: 20px 50px;
-  }
-}
-@media (max-width: 700px) {
-  header {
-    flex-direction: column;
-  }
-  header h2 {
-    margin-bottom: 15px;
-  }
-  header .nav li {
-    margin: 0 7px;
-  }
-}
+
 .box {
   position: relative;
   justify-content: center;
@@ -102,7 +74,7 @@ header .nav li:last-child {
   border: 4px solid #fff;
   transition: all 0.5s;
   position: absolute;
-  bottom: 120px; /* Ajustează cât de jos vrei să fie */
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -110,17 +82,74 @@ header .nav li:last-child {
   background: #fff;
   color: #000;
 }
+
+header .nav li a {
+  /*textul din lista*/
+  font-family: "Courier New", monospace;
+  font-size: 18px; /* Schimbă dimensiunea după preferință */
+  position: relative;
+}
+header .nav li a::after {
+  /*Liniile de sub lista*/
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Ajustează distanța față de text */
+  width: 100%;
+  height: 2px; /* Grosimea liniei */
+  background-color: white; /* Schimbă culoarea dacă e nevoie */
+  transition: all 0.3s ease-in-out;
+}
+.footer {
+  display: flex;
+  background-color: #faf2f2;
+}
+.tittle-footer {
+  font-family: "Courier New", monospace;
+  font-size: 26px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  font-style: italic;
+}
 @media (max-width: 1100px) {
   .box {
-    min-height: 600px;
+    min-height: 500px;
   }
   .box h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
   .box h3 {
     font-size: 20px;
   }
   .box a.boxBtn {
-    padding: 15px 40px;
+    padding: 5px 20px;
+  }
+}
+@media (max-width: 1000px) {
+  section {
+    padding: 100px 50px;
+  }
+}
+@media (max-width: 600px) {
+  section {
+    padding: 125px 30px;
+  }
+}
+@media (max-width: 1000px) {
+  header {
+    padding: 20px 50px;
+  }
+}
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+  }
+  header h2 {
+    margin-bottom: 15px;
+  }
+  header .nav li {
+    margin: 0 7px;
   }
 }
