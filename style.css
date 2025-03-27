@@ -102,10 +102,12 @@ header .nav li a::after {
 }
 .footer {
   display: flex;
-  flex-direction: column;
-  background-color: #ececec;
+  background-color: #faf7f3;
 }
-
+.title-description {
+  display: flex;
+  flex-direction: column;
+}
 .title-footer {
   display: flex;
   justify-content: flex-start;
@@ -117,8 +119,10 @@ header .nav li a::after {
   font-size: 35px;
   color: rgb(0, 0, 0);
 }
-.description {
-  display: flex;
+
+.img-resize {
+  width: 80%;
+  height: auto;
 }
 @media (max-width: 1100px) {
   .box {
@@ -132,6 +136,13 @@ header .nav li a::after {
   }
   .box a.boxBtn {
     padding: 5px 20px;
+  }
+  .title-footer {
+    margin-left: 30px; /* Ajustează valoarea după preferință */
+  }
+  .img-resize {
+    width: 40%; /* modificare pentru ecrane mici */
+    height: auto;
   }
 }
 @media (max-width: 1000px) {
