@@ -124,6 +124,20 @@ header .nav li a::after {
   width: 80%;
   height: auto;
 }
+p.description {
+  text-indent: 2em;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
 @media (max-width: 1100px) {
   .box {
     min-height: 500px;
@@ -143,6 +157,36 @@ header .nav li a::after {
   .img-resize {
     width: 40%; /* modificare pentru ecrane mici */
     height: auto;
+  }
+  p.description {
+    font-size: 24px;
+  }
+  .img2-resize {
+    display: none;
+  }
+}
+@media (min-width: 1500px) {
+  .img-resize {
+    width: 40%; /* modificare pentru ecrane mici */
+    height: auto;
+  }
+}
+@media (max-width: 1758px) {
+  .img2-resize2 {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  p.description {
+    font-size: 18px;
+  }
+}
+@media (min-width: 700px) {
+  p.description {
+    font-size: 30px;
+  }
+  .title-footer {
+    font-size: 50px;
   }
 }
 @media (max-width: 1000px) {
