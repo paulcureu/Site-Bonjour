@@ -30,3 +30,6 @@ jobs:
 
       - name: ✅ Run Tests (placeholder)
         run: echo "No tests yet"
+
+      - name: 🏗️ Run Build
+        run: pnpm build
