@@ -14,6 +14,3 @@ app.get('/api/v1/status', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
-var x = 5;
-console.log(x);
