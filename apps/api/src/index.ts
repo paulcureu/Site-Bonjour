@@ -1,11 +1,11 @@
-import express from "express";
+import express from 'express';
 
 const app = express();
 const port = 3000;
 
-app.get("/api/v1/status", (req, res) => {
+app.get('/api/v1/status', (req, res) => {
   res.json({
-    status: "ok",
+    status: 'ok',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
   });

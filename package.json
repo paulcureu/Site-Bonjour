@@ -2,17 +2,42 @@
   "name": "site-bonjour",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
     "dev": "pnpm --filter ./apps/api dev",
-    "lint": "pnpm -r lint",
-    "build": "pnpm -r build"
+    "lint": "pnpm -r lint && eslint .",
+    "build": "pnpm -r build",
+    "prepare": "husky install",
+    "format": "prettier --write ."
   },
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.27.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.1.0",
+    "prettier": "^3.5.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
