@@ -1,16 +1,19 @@
 import express from 'express';
+import { env } from './env';
+import { logger } from './logger';
 
 const app = express();
-const port = 3000;
+const startTime = Date.now();
 
 app.get('/api/v1/status', (req, res) => {
-  res.json({
+  const uptime = (Date.now() - startTime) / 1000;
+  res.status(200).json({
     status: 'ok',
-    uptime: process.uptime(),
+    uptime,
     timestamp: new Date().toISOString(),
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+app.listen(Number(env.PORT), () => {
+  logger.info(`Server started on port ${env.PORT}`);
 });
