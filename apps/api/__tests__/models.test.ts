@@ -43,7 +43,7 @@ describe('MenuItem relationships', () => {
         description: 'Cheesy and good',
         price: 30,
         imageUrl: 'https://via.placeholder.com/150',
-        category: Category.MAIN_COURSE,
+        category: 'MAIN_COURSE',
       },
     });
 
@@ -92,7 +92,7 @@ describe('Cascade delete', () => {
         description: 'Juicy and tasty',
         price: 25,
         imageUrl: 'https://via.placeholder.com/150',
-        category: Category.MAIN_COURSE,
+        category: 'MAIN_COURSE',
       },
     });
 
