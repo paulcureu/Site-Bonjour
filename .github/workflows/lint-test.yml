@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # ▸ disponibil în toate step-urile (generate, migrate, jest)
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/site_db
 
@@ -39,17 +38,21 @@ jobs:
           node-version: 18
           cache: 'pnpm'
 
-      - name: 📥 Install deps (pnpm)
-        run: |
-          corepack enable
-          pnpm install
+      # 👉 Instalează pnpm CLI
+      - name: 📥 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          # rulează automat „pnpm install” dacă run_install=true
+          run_install: false
 
-      # ▸ Generăm clientul în apps/api
+      - name: 📥 Install deps
+        run: pnpm install
+
       - name: ⚙️ Prisma generate
         working-directory: apps/api
         run: npx prisma generate
 
-      # ▸ Aplicăm migrațiile pe DB-ul din container
       - name: 🗄️ Prisma migrate deploy
         working-directory: apps/api
         run: npx prisma migrate deploy
