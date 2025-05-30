@@ -10,6 +10,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # ▸ disponibil în toate step-urile (generate, migrate, jest)
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/site_db
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: site_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: ⬇️ Checkout code
         uses: actions/checkout@v3
@@ -18,12 +37,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'pnpm'
 
-      - name: 📥 Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: true
+      - name: 📥 Install deps (pnpm)
+        run: |
+          corepack enable
+          pnpm install
+
+      # ▸ Generăm clientul în apps/api
+      - name: ⚙️ Prisma generate
+        working-directory: apps/api
+        run: npx prisma generate
+
+      # ▸ Aplicăm migrațiile pe DB-ul din container
+      - name: 🗄️ Prisma migrate deploy
+        working-directory: apps/api
+        run: npx prisma migrate deploy
 
       - name: 🧹 Run Lint
         run: pnpm lint
