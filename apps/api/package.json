@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.24",
     "prisma": "^6.8.2",
