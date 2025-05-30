@@ -10,6 +10,10 @@ jobs:
   codecov:
     runs-on: ubuntu-latest
 
+    # ✅ ENV disponibil în TOATE step-urile
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/site_db
+
     services:
       postgres:
         image: postgres:15
@@ -37,16 +41,15 @@ jobs:
       - name: ⚙️ Generate Prisma client
         run: pnpm --filter api exec -- prisma generate
 
-      - name: 🛠️ Setup DB + env
-        run: |
-          echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/site_db" > apps/api/.env
-          pnpm --filter api exec -- prisma migrate deploy
+      - name: 🗄️ Run migrations
+        run: pnpm --filter api exec -- prisma migrate deploy
 
       - name: 🧪 Run tests with coverage
         run: pnpm --filter api exec -- jest --coverage
 
-      - name: 📤 Upload to Codecov
+      - name: 📤 Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           directory: ./apps/api/coverage
           flags: api
+          # token: ${{ secrets.CODECOV_TOKEN }}   # ← doar dacă repo-ul e privat
