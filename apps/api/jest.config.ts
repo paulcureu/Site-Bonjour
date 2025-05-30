@@ -12,6 +12,9 @@ const config: Config = {
     ],
   },
   testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['lcov', 'text'],
 };
 
 export default config;
