@@ -1,4 +1,6 @@
-export default {
+import type { Config } from 'jest';
+
+const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   transform: {
@@ -9,5 +11,7 @@ export default {
       },
     ],
   },
-  testMatch: ['**/__tests__/**/*.test.ts'],
+  testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
 };
+
+export default config;
