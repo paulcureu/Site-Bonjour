@@ -28,8 +28,8 @@ jobs:
       - name: 🧹 Run Lint
         run: pnpm lint
 
-      - name: ✅ Run Tests (placeholder)
-        run: echo "No tests yet"
+      - name: 🧪 Run Tests
+        run: pnpm --filter api test -- --coverage
 
       - name: 🏗️ Run Build
         run: pnpm build

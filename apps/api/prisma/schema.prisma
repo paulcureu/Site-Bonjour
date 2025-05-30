@@ -41,10 +41,10 @@ model Reservation {
 
 model Review {
   id          String   @id @default(cuid())
-  rating      Int      // 1–5 stele
+  rating      Int
   comment     String
   createdAt   DateTime @default(now())
-  menuItem    MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItem    MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
   menuItemId  String
 }
 
