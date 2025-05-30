@@ -50,10 +50,8 @@ describe('MenuItem relationships', () => {
     await prisma.review.create({
       data: {
         rating: 5,
-        comment: 'Delicious!', // ← actual field name
-        menuItem: {
-          connect: { id: menuItem.id },
-        },
+        comment: 'Delicious!',
+        menuItem: { connect: { id: menuItem.id } },
       },
     });
 
@@ -64,19 +62,13 @@ describe('MenuItem relationships', () => {
         phone: '0712345678',
         people: 2,
         date: new Date(),
-        menuItems: {
-          connect: [{ id: menuItem.id }],
-        },
+        menuItems: { connect: [{ id: menuItem.id }] },
       },
     });
 
     const reviews = await prisma.review.findMany({ where: { menuItemId: menuItem.id } });
     const reservations = await prisma.reservation.findMany({
-      where: {
-        menuItems: {
-          some: { id: menuItem.id },
-        },
-      },
+      where: { menuItems: { some: { id: menuItem.id } } },
     });
 
     expect(reviews.length).toBe(1);
@@ -100,9 +92,7 @@ describe('Cascade delete', () => {
       data: {
         rating: 4,
         comment: 'Very good!',
-        menuItem: {
-          connect: { id: menuItem.id },
-        },
+        menuItem: { connect: { id: menuItem.id } },
       },
     });
 
@@ -113,26 +103,18 @@ describe('Cascade delete', () => {
         phone: '0700000000',
         people: 3,
         date: new Date(),
-        menuItems: {
-          connect: [{ id: menuItem.id }],
-        },
+        menuItems: { connect: [{ id: menuItem.id }] },
       },
     });
 
-    await prisma.menuItem.delete({
-      where: { id: menuItem.id },
-    });
+    await prisma.menuItem.delete({ where: { id: menuItem.id } });
 
     const reviews = await prisma.review.findMany({ where: { menuItemId: menuItem.id } });
     const reservations = await prisma.reservation.findMany({
-      where: {
-        menuItems: {
-          some: { id: menuItem.id },
-        },
-      },
+      where: { menuItems: { some: { id: menuItem.id } } },
     });
 
     expect(reviews.length).toBe(0);
-    expect(reservations.length).toBe(0); // dacă vrei să rămână 1, adaptează așteptarea
+    expect(reservations.length).toBe(0);
   });
 });
