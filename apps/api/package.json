@@ -18,12 +18,14 @@
     "@logtail/node": "^0.5.5",
     "@logtail/winston": "^0.5.5",
     "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0",
     "env-schema": "^6.0.1",
     "express": "^5.1.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.24",
     "prisma": "^6.8.2",

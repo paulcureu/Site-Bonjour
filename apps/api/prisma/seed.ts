@@ -1,5 +1,6 @@
 import { PrismaClient, Category } from '@prisma/client';
 import { faker } from '@faker-js/faker';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -69,6 +70,25 @@ async function main() {
     }),
   );
 
+  console.log('👤 Verificare AdminUser...');
+
+  const existingAdmin = await prisma.adminUser.findUnique({
+    where: { email: 'admin@site.com' },
+  });
+
+  if (!existingAdmin) {
+    const hashedPassword = await bcrypt.hash('admin123', 10);
+    await prisma.adminUser.create({
+      data: {
+        email: 'admin@site.com',
+        name: 'Admin',
+        password: hashedPassword,
+      },
+    });
+    console.log('✅ AdminUser creat cu succes!');
+  } else {
+    console.log('ℹ️ AdminUser există deja.');
+  }
   console.log('✅ Seed complet!');
 }
 
