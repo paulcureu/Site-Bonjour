@@ -50,6 +50,7 @@ jobs:
       - name: 📤 Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./apps/api/coverage
+          files: apps/api/coverage/lcov.info # indica direct fișierul
           flags: api
-          # token: ${{ secrets.CODECOV_TOKEN }}   # ← doar dacă repo-ul e privat
+          fail_ci_if_error: true
+          verbose: true
