@@ -39,7 +39,7 @@ jobs:
       - name: 📥 Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 10.11.0
           run_install: false # instalăm dependențele explicit mai jos
 
       # 2. Node + cache store pnpm
