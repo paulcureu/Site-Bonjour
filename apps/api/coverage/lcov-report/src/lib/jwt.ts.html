@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/19</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,59 +90,59 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken';</span>
 &nbsp;
-const accessSecret = process.env.JWT_ACCESS_SECRET || 'default_access_secret';
-const refreshSecret = process.env.JWT_REFRESH_SECRET || 'default_refresh_secret';
+const accessSecret = <span class="cstat-no" title="statement not covered" >process.env.JWT_ACCESS_SECRET || 'default_access_secret';</span>
+const refreshSecret = <span class="cstat-no" title="statement not covered" >process.env.JWT_REFRESH_SECRET || 'default_refresh_secret';</span>
 &nbsp;
-const accessExpiresIn = (process.env.JWT_ACCESS_EXPIRES_IN || '15m') as SignOptions['expiresIn'];
-const refreshExpiresIn = (process.env.JWT_REFRESH_EXPIRES_IN || '7d') as SignOptions['expiresIn'];
+const accessExpiresIn = (<span class="cstat-no" title="statement not covered" >process.env.JWT_ACCESS_EXPIRES_IN || '15m')</span> as SignOptions['expiresIn'];
+const refreshExpiresIn = (<span class="cstat-no" title="statement not covered" >process.env.JWT_REFRESH_EXPIRES_IN || '7d')</span> as SignOptions['expiresIn'];
 &nbsp;
-export function signAccessToken(payload: object): string {
-  return jwt.sign(payload, accessSecret, { expiresIn: accessExpiresIn });
+<span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >s</span>ignAccessToken(</span>payload: object): string {
+<span class="cstat-no" title="statement not covered" >  return jwt.sign(payload, accessSecret, { expiresIn: accessExpiresIn });</span>
 }
 &nbsp;
-export function signRefreshToken(payload: object): string {
-  return jwt.sign(payload, refreshSecret, { expiresIn: refreshExpiresIn });
+<span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >s</span>ignRefreshToken(</span>payload: object): string {
+<span class="cstat-no" title="statement not covered" >  return jwt.sign(payload, refreshSecret, { expiresIn: refreshExpiresIn });</span>
 }
 &nbsp;
-export function verifyAccessToken(token: string): JwtPayload {
-  const decoded = jwt.verify(token, accessSecret);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof decoded === 'string') <span class="cstat-no" title="statement not covered" >throw new Error('Invalid access token');</span>
-  return decoded;
+<span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >v</span>erifyAccessToken(</span>token: string): JwtPayload {
+  const decoded = <span class="cstat-no" title="statement not covered" >jwt.verify(token, accessSecret);</span>
+<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof decoded === 'string') <span class="cstat-no" title="statement not covered" >throw new Error('Invalid access token');</span></span>
+<span class="cstat-no" title="statement not covered" >  return decoded;</span>
 }
 &nbsp;
-export function verifyRefreshToken(token: string): JwtPayload {
-  const decoded = jwt.verify(token, refreshSecret);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof decoded === 'string') <span class="cstat-no" title="statement not covered" >throw new Error('Invalid refresh token');</span>
-  return decoded;
+<span class="cstat-no" title="statement not covered" >export function <span class="fstat-no" title="function not covered" >v</span>erifyRefreshToken(</span>token: string): JwtPayload {
+  const decoded = <span class="cstat-no" title="statement not covered" >jwt.verify(token, refreshSecret);</span>
+<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof decoded === 'string') <span class="cstat-no" title="statement not covered" >throw new Error('Invalid refresh token');</span></span>
+<span class="cstat-no" title="statement not covered" >  return decoded;</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -151,7 +151,7 @@ export function verifyRefreshToken(token: string): JwtPayload {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-31T17:49:24.230Z
+                at 2025-05-31T18:41:35.417Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
