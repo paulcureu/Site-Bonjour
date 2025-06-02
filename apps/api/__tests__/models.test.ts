@@ -14,6 +14,8 @@ afterAll(async () => {
 });
 
 describe('AdminUser email uniqueness', () => {
+  console.log('DB URL:', process.env.DATABASE_URL);
+
   it('should not allow duplicate emails', async () => {
     await prisma.adminUser.create({
       data: {
@@ -36,6 +38,8 @@ describe('AdminUser email uniqueness', () => {
 });
 
 describe('MenuItem relationships', () => {
+  console.log('DB URL:', process.env.DATABASE_URL);
+
   it('should create review and reservation linked to menu item', async () => {
     const menuItem = await prisma.menuItem.create({
       data: {
@@ -77,6 +81,8 @@ describe('MenuItem relationships', () => {
 });
 
 describe('Cascade delete', () => {
+  console.log('DB URL:', process.env.DATABASE_URL);
+
   it('should delete reviews and disconnect reservations when menu item is deleted', async () => {
     const menuItem = await prisma.menuItem.create({
       data: {

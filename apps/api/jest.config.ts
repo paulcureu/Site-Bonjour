@@ -3,7 +3,8 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-
+  setupFiles: ['<rootDir>/jest.setup.ts'],
+  globalSetup: '<rootDir>/scripts/setupTestDB.ts',
   // === Coverage ===
   collectCoverage: true,
   collectCoverageFrom: [

@@ -5,6 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watch",
+    "studio:test": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_test_db'; npx prisma studio\"",
+    "db:reset:test": "npx prisma migrate reset --force --skip-seed --env .env.test",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
