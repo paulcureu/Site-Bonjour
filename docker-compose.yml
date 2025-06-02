@@ -6,7 +6,7 @@ services:
     container_name: site-db
     restart: always
     ports:
-      - '5433:5432'
+      - '5432:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -28,6 +28,7 @@ services:
     container_name: site-api
     ports:
       - '3000:3000'
+      - '5555:5555'
     env_file:
       - .env
       - ./apps/api/.env

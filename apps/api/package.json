@@ -8,7 +8,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts",
+    "studio:local": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_db'; npx prisma studio\""
   },
   "keywords": [],
   "author": "",
