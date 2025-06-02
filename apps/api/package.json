@@ -12,7 +12,8 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "seed": "ts-node prisma/seed.ts",
-    "studio:local": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_db'; npx prisma studio\""
+    "studio:local": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_db'; npx prisma studio\"",
+    "db:reset-and-seed:test": "ts-node scripts/setupTestDB.ts"
   },
   "keywords": [],
   "author": "",
