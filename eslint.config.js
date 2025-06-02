@@ -20,6 +20,11 @@ export default [
     rules: {},
   },
   {
+    ignores: ['node_modules/', 'dist/', 'coverage/', '.turbo/', 'build/'],
+    files: ['**/*.ts'],
+    // restul configurării...
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,

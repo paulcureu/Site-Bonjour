@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "pnpm --filter ./apps/api dev",
-    "lint": "apps/api/package.json",
+    "lint": "eslint . --ext .ts",
     "build": "pnpm -r build",
     "prepare": "husky install",
     "format": "prettier --write ."
