@@ -66,6 +66,8 @@ jobs:
       # 6. Lint
       - name: 🧹 Run Lint
         run: pnpm lint
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/site_test_db
 
       # 7. Teste + coverage (doar pachetul api)
       - name: 🧪 Run tests with coverage
