@@ -46,6 +46,8 @@ jobs:
 
       - name: 🧪 Run tests with coverage
         run: pnpm --filter api exec -- jest --coverage
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/site_test_db
 
       - name: 📤 Upload coverage to Codecov
         uses: codecov/codecov-action@v3
