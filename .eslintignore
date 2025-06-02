@@ -1,0 +1,15 @@
+# Ignoră foldere generate automat
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.test
+
+# Ignoră lockfile dacă vrei
+pnpm-lock.yaml
+
+# Ignoră CLI/output de CI
+turbo/
+.next/
+out/
