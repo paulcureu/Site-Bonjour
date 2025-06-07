@@ -59,7 +59,7 @@ describe('MenuItem relationships', () => {
       },
     });
 
-    await prisma.reservation.create({
+    const reservation = await prisma.reservation.create({
       data: {
         name: 'Paul',
         email: 'paul@example.com',
@@ -77,6 +77,8 @@ describe('MenuItem relationships', () => {
 
     expect(reviews.length).toBe(1);
     expect(reservations.length).toBe(1);
+    expect(reviews[0].menuItemId).toBe(menuItem.id);
+    expect(reservations[0].id).toBe(reservation.id);
   });
 });
 
