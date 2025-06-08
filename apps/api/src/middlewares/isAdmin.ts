@@ -1,26 +1,32 @@
-import { RequestHandler } from 'express';
+// apps/api/src/middlewares/isAdmin.ts
+import { Request, Response, NextFunction } from 'express';
 import { verifyAccessToken } from '../lib/jwt';
 
-export const isAdmin: RequestHandler = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader?.startsWith('Bearer ')) {
-    res.status(401).json({ message: 'Missing access token' });
+export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
+  const auth = req.headers.authorization;
+
+  if (!auth?.startsWith('Bearer ')) {
+    res.status(401).json({ message: 'Missing token' });
     return;
   }
 
-  const token = authHeader.split(' ')[1];
-
   try {
-    const payload = verifyAccessToken(token);
+    const token = auth.split(' ')[1];
+    const payload = verifyAccessToken(token) as {
+      sub: string;
+      email: string;
+      role?: string;
+    };
 
-    if (payload.role !== 'admin') {
+    if ((payload.role ?? '').toUpperCase() !== 'ADMIN') {
       res.status(403).json({ message: 'Access denied: Admins only' });
       return;
     }
 
-    (req as any).user = payload;
+    (req as any).user = payload; // optional: expose user to downstream handlers
     next();
   } catch (err) {
-    res.status(403).json({ message: 'Invalid or expired access token' });
+    console.error('[isAdmin] JWT error', err);
+    res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
