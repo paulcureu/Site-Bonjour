@@ -15,37 +15,37 @@ enum Category {
 }
 
 model MenuItem {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  price       Float
-  category    Category
-  imageUrl    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  reviews     Review[]        // legătură 1:N cu Review
+  id           String        @id @default(cuid())
+  name         String
+  description  String
+  price        Float
+  category     Category
+  imageUrl     String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  reviews      Review[] // legătură 1:N cu Review
   reservations Reservation[] @relation("MenuItemReservations")
 }
 
 model Reservation {
-  id          String    @id @default(cuid())
-  name        String
-  email       String
-  phone       String
-  date        DateTime
-  people      Int
-  notes       String?
-  menuItems   MenuItem[] @relation("MenuItemReservations")
-  createdAt   DateTime   @default(now())
+  id        String     @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  date      DateTime
+  people    Int
+  notes     String?
+  menuItems MenuItem[] @relation("MenuItemReservations")
+  createdAt DateTime   @default(now())
 }
 
 model Review {
-  id          String   @id @default(cuid())
-  rating      Int
-  comment     String
-  createdAt   DateTime @default(now())
-  menuItem    MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
-  menuItemId  String
+  id         String   @id @default(cuid())
+  rating     Int
+  comment    String
+  createdAt  DateTime @default(now())
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  menuItemId String
 }
 
 model AdminUser {

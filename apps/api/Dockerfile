@@ -6,6 +6,7 @@ COPY . .
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install
+RUN npx prisma generate
 
 EXPOSE 3000
 

@@ -3,7 +3,7 @@ version: '3.9'
 services:
   db:
     image: postgres:15
-    container_name: site-db
+    container_name: site_db
     restart: always
     ports:
       - '5432:5432'
@@ -31,7 +31,6 @@ services:
       - '5555:5555'
     env_file:
       - .env
-      - ./apps/api/.env
     depends_on:
       db:
         condition: service_healthy

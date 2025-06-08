@@ -15,6 +15,4 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/status', statusRoutes);
 
 const port = Number(env.PORT);
-app.listen(port, () =>
-  console.log(`Server running on http://localhost:${port}`),
-);
+app.listen(Number(env.PORT), env.HOST, () => console.log(`✅ Server running on port ${port}`));
