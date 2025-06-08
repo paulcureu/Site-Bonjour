@@ -118,5 +118,85 @@ export const swaggerSpec: OpenAPIV3.Document = {
         },
       },
     },
+    '/api/v1/auth/request-password-reset': {
+      post: {
+        summary: 'Send reset password email',
+        tags: ['Auth'],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  email: { type: 'string', example: 'admin@site.com' },
+                },
+                required: ['email'],
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Reset link sent (if email is valid)',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    message: { type: 'string' },
+                  },
+                },
+              },
+            },
+          },
+        },
+        security: [], // public
+      },
+    },
+    '/api/v1/auth/reset-password': {
+      post: {
+        summary: 'Reset password using token',
+        tags: ['Auth'],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['token', 'newPassword'],
+                properties: {
+                  token: {
+                    type: 'string',
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+                  },
+                  newPassword: {
+                    type: 'string',
+                    example: 'ParolaNoua123!',
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Password reset successful',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    message: { type: 'string' },
+                  },
+                },
+              },
+            },
+          },
+          400: { description: 'Invalid or expired token' },
+        },
+        security: [], // public
+      },
+    },
   },
 };
