@@ -1,4 +1,5 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+// __tests__/models.test.ts
+import { PrismaClient, Role, Category } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -6,31 +7,31 @@ beforeEach(async () => {
   await prisma.review.deleteMany();
   await prisma.reservation.deleteMany();
   await prisma.menuItem.deleteMany();
-  await prisma.adminUser.deleteMany();
+  await prisma.user.deleteMany(); // ⬅️ updated
 });
 
 afterAll(async () => {
   await prisma.$disconnect();
 });
 
-describe('AdminUser email uniqueness', () => {
-  console.log('DB URL:', process.env.DATABASE_URL);
-
+describe('User email uniqueness (admin role)', () => {
   it('should not allow duplicate emails', async () => {
-    await prisma.adminUser.create({
+    await prisma.user.create({
       data: {
         name: 'Admin One',
         email: 'test@example.com',
         password: 'secret',
+        role: Role.ADMIN, // ⬅️ enum
       },
     });
 
     await expect(
-      prisma.adminUser.create({
+      prisma.user.create({
         data: {
           name: 'Admin Duplicate',
           email: 'test@example.com',
           password: 'another',
+          role: Role.ADMIN,
         },
       }),
     ).rejects.toThrow();
@@ -38,8 +39,6 @@ describe('AdminUser email uniqueness', () => {
 });
 
 describe('MenuItem relationships', () => {
-  console.log('DB URL:', process.env.DATABASE_URL);
-
   it('should create review and reservation linked to menu item', async () => {
     const menuItem = await prisma.menuItem.create({
       data: {
@@ -47,7 +46,7 @@ describe('MenuItem relationships', () => {
         description: 'Cheesy and good',
         price: 30,
         imageUrl: 'https://via.placeholder.com/150',
-        category: 'MAIN_COURSE',
+        category: Category.MAIN_COURSE, // ⬅️ enum
       },
     });
 
@@ -83,8 +82,6 @@ describe('MenuItem relationships', () => {
 });
 
 describe('Cascade delete', () => {
-  console.log('DB URL:', process.env.DATABASE_URL);
-
   it('should delete reviews and disconnect reservations when menu item is deleted', async () => {
     const menuItem = await prisma.menuItem.create({
       data: {
@@ -92,7 +89,7 @@ describe('Cascade delete', () => {
         description: 'Juicy and tasty',
         price: 25,
         imageUrl: 'https://via.placeholder.com/150',
-        category: 'MAIN_COURSE',
+        category: Category.MAIN_COURSE,
       },
     });
 

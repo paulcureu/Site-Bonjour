@@ -4,8 +4,10 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "db:push:test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test prisma db push --force-reset --schema=prisma/schema.prisma",
+    "seed:test":    "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test ts-node prisma/seed.ts",
+    "test":         "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --coverage",
+    "test:watch":   "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --watch",
     "studio:test": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_test_db'; npx prisma studio\"",
     "db:reset:test": "dotenv -e .env.test -- prisma migrate reset --force --skip-seed",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
