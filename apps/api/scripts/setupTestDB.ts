@@ -1,7 +1,7 @@
 // __tests__/setupTestDB.ts
 import { execSync } from 'child_process';
-import dotenv from 'dotenv';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 async function resetTestDatabase() {
   dotenv.config({ path: '.env.test' });
 
