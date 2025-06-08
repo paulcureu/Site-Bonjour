@@ -30,3 +30,7 @@ Un site premium pentru un restaurant modern. Monorepo full-stack cu pnpm, Docker
    ```
 
    Comenzile rulează în pachetul `api` și pregătesc baza de date cu structura și datele necesare.
+
+## Configurare API
+
+Inainte de a porni API-ul sau scripturile de seed, copiaza `apps/api/.env.example` in `apps/api/.env` si actualizeaza valorile variabilelor.
