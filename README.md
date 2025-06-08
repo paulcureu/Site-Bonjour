@@ -6,6 +6,7 @@
 
 Un site premium pentru un restaurant modern. Monorepo full-stack cu pnpm, Docker, CI, autentificare și dashboard.
 
+
 ## Pornire rapidă
 
 1. **Pornește serviciile de bază**
@@ -30,6 +31,7 @@ Un site premium pentru un restaurant modern. Monorepo full-stack cu pnpm, Docker
    ```
 
    Comenzile rulează în pachetul `api` și pregătesc baza de date cu structura și datele necesare.
+
 
 ## Configurare API
 
