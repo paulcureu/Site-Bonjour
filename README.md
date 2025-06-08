@@ -16,7 +16,7 @@ Un site premium pentru un restaurant modern. Monorepo full-stack cu pnpm, Docker
 
    Acest pas pornește containerele PostgreSQL și Redis. Baza de date PostgreSQL este necesară pentru Prisma și trebuie configurată prin variabila `DATABASE_URL`.
 
-   Creează un fișier `.env` la rădăcina proiectului și adaugă URL-ul conexiunii, de exemplu:
+   Copiază fișierul `.env.example` în `.env` la rădăcina proiectului și adaugă URL-ul conexiunii, de exemplu:
 
    ```bash
    DATABASE_URL="postgresql://postgres:postgres@localhost:5432/site_db"
