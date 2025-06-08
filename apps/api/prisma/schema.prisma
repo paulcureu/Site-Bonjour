@@ -14,6 +14,11 @@ enum Category {
   DRINK
 }
 
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
 model MenuItem {
   id           String        @id @default(cuid())
   name         String
@@ -23,7 +28,7 @@ model MenuItem {
   imageUrl     String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
-  reviews      Review[] // legătură 1:N cu Review
+  reviews      Review[] // 1:N cu Review
   reservations Reservation[] @relation("MenuItemReservations")
 }
 
@@ -48,10 +53,11 @@ model Review {
   menuItemId String
 }
 
-model AdminUser {
+model User {
   id        String   @id @default(cuid())
   email     String   @unique
   password  String
   name      String
+  role      Role     @default(CUSTOMER)
   createdAt DateTime @default(now())
 }

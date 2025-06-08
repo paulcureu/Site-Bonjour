@@ -1,17 +1,17 @@
-import { PrismaClient, Category } from '@prisma/client';
+import { PrismaClient, Category, Role } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🧹 Ștergere date vechi...');
+  console.log('🧹 Clearing old data...');
   await prisma.review.deleteMany();
   await prisma.reservation.deleteMany();
   await prisma.menuItem.deleteMany();
-  await prisma.adminUser.deleteMany();
+  await prisma.user.deleteMany();
 
-  console.log('🍽️ Creare dish-uri...');
+  console.log('🍽️ Creating menu items...');
   const categories: Category[] = [
     Category.APPETIZER,
     Category.MAIN_COURSE,
@@ -33,7 +33,7 @@ async function main() {
     ),
   );
 
-  console.log('📅 Creare rezervări...');
+  console.log('📅 Creating reservations...');
   await Promise.all(
     Array.from({ length: 30 }).map(() =>
       prisma.reservation.create({
@@ -56,7 +56,7 @@ async function main() {
     ),
   );
 
-  console.log('⭐ Creare review-uri...');
+  console.log('⭐ Creating reviews...');
   await Promise.all(
     Array.from({ length: 10 }).map(() => {
       const menuItem = faker.helpers.arrayElement(dishes);
@@ -70,26 +70,32 @@ async function main() {
     }),
   );
 
-  console.log('👤 Verificare AdminUser...');
+  console.log('👤 Creating users...');
 
-  const existingAdmin = await prisma.adminUser.findUnique({
-    where: { email: 'admin@site.com' },
+  const adminEmail = 'admin@site.com';
+  const customerEmail = 'customer@site.com';
+
+  const hashedPassword = await bcrypt.hash('admin123', 10);
+
+  await prisma.user.createMany({
+    data: [
+      {
+        email: adminEmail,
+        name: 'Admin User',
+        password: hashedPassword,
+        role: Role.ADMIN,
+      },
+      {
+        email: customerEmail,
+        name: 'Customer User',
+        password: hashedPassword,
+        role: Role.CUSTOMER,
+      },
+    ],
+    skipDuplicates: true,
   });
 
-  if (!existingAdmin) {
-    const hashedPassword = await bcrypt.hash('admin123', 10);
-    await prisma.adminUser.create({
-      data: {
-        email: 'admin@site.com',
-        name: 'Admin',
-        password: hashedPassword,
-      },
-    });
-    console.log('✅ AdminUser creat cu succes!');
-  } else {
-    console.log('ℹ️ AdminUser există deja.');
-  }
-  console.log('✅ Seed complet!');
+  console.log('✅ Seed completed!');
 }
 
 main()
