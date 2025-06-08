@@ -7,11 +7,13 @@ import listEndpoints from 'express-list-endpoints';
 import { env } from './env';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './utils/swagger';
+import { rateLimiter } from './middlewares/rateLimiter';
 
 const app = express();
 
 // 🟢 trebuie să fie primul!
 app.use(express.json());
+app.use(rateLimiter);
 
 // 🟢 rute API
 app.use('/api/v1/auth', authRoutes);

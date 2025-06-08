@@ -36,3 +36,5 @@ Un site premium pentru un restaurant modern. Monorepo full-stack cu pnpm, Docker
 ## Configurare API
 
 Inainte de a porni API-ul sau scripturile de seed, copiaza `apps/api/.env.example` in `apps/api/.env` si actualizeaza valorile variabilelor.
+
+API-ul limiteaza fiecare IP la 100 de cereri in 10 minute. Daca depasesti limita vei primi raspuns **429 Too Many Requests**.

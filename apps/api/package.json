@@ -5,9 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "db:push:test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test prisma db push --force-reset --schema=prisma/schema.prisma",
-    "seed:test":    "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test ts-node prisma/seed.ts",
-    "test":         "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --coverage",
-    "test:watch":   "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --watch",
+    "seed:test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test ts-node prisma/seed.ts",
+    "test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --coverage",
+    "test:watch": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --watch",
     "studio:test": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_test_db'; npx prisma studio\"",
     "db:reset:test": "dotenv -e .env.test -- prisma migrate reset --force --skip-seed",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
@@ -30,6 +30,8 @@
     "envalid": "^8.0.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "rate-limiter-flexible": "^7.1.1",
+    "redis": "^5.5.6",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },

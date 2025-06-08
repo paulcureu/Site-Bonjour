@@ -31,6 +31,8 @@ services:
       - '5555:5555'
     env_file:
       - .env
+    environment:
+      - REDIS_URL=redis://redis:6379
     depends_on:
       db:
         condition: service_healthy
