@@ -96,6 +96,9 @@ importers:
       '@prisma/client':
         specifier: ^6.8.2
         version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../packages/validation
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
