@@ -11,8 +11,9 @@ router.get('/debug/redis', async (req, res) => {
     const value = await redis.get('debug:test');
     res.json({ status: 'connected', value });
   } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
     console.error('❌ Redis connection error:', err);
-    res.status(500).json({ error: 'Redis connection failed', message: err.message });
+    res.status(500).json({ error: 'Redis connection failed', message });
   }
 });
 
