@@ -11,7 +11,7 @@
     "studio:test": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_test_db'; npx prisma studio\"",
     "db:reset:test": "dotenv -e .env.test -- prisma migrate reset --force --skip-seed",
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
-    "build": "tsc",
+    "build": "tsc --build",
     "lint": "eslint . --ext .ts",
     "seed": "ts-node prisma/seed.ts",
     "studio:local": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_db'; npx prisma studio\"",
