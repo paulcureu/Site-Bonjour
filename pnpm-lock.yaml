@@ -96,9 +96,6 @@ importers:
       '@prisma/client':
         specifier: ^6.8.2
         version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
-      '@shared/validation':
-        specifier: workspace:*
-        version: link:../../packages/validation
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
@@ -190,9 +187,6 @@ importers:
       ts-node-dev:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@22.15.24)(typescript@5.8.3)
-      tsc-alias:
-        specifier: ^1.8.16
-        version: 1.8.16
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
