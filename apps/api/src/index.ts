@@ -8,6 +8,8 @@ import { env } from './env';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './utils/swagger';
 import { reservationRoutes } from './routes/reservationRoutes';
+import { reviewRoutes } from './routes/reviewRoutes';
+import { menuItemRoutes } from './routes/menuItemRoutes';
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use('/api/v1/status', statusRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/reservations', reservationRoutes);
+app.use('/api/v1/reviews', reviewRoutes);
+app.use('/api/v1/menu-items', menuItemRoutes);
 
 const port = Number(env.PORT);
 app.listen(Number(env.PORT), env.HOST, () => console.log(`✅ Server running on port ${port}`));

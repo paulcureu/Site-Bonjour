@@ -1,10 +1,9 @@
-// packages/validation/src/review.ts
 import { z } from 'zod';
 
 export const createReviewSchema = z.object({
-  name: z.string().min(1),
-  rating: z.number().min(1).max(5),
+  rating: z.number().int().min(1).max(5),
   comment: z.string().min(5),
+  menuItemId: z.string().cuid(), // verificăm că e un id valid
 });
 
 export const updateReviewSchema = createReviewSchema.partial();
