@@ -3,11 +3,23 @@ import { PrismaClient, Role, Category } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+let user: Awaited<ReturnType<typeof prisma.user.create>>;
+
 beforeEach(async () => {
   await prisma.review.deleteMany();
   await prisma.reservation.deleteMany();
   await prisma.menuItem.deleteMany();
-  await prisma.user.deleteMany(); // ⬅️ updated
+  await prisma.user.deleteMany();
+
+  // ✅ creăm un user înainte de fiecare test
+  user = await prisma.user.create({
+    data: {
+      name: 'Test User',
+      email: 'user@example.com',
+      password: 'dummy', // e ok, nu testăm autentificare aici
+      role: Role.ADMIN,
+    },
+  });
 });
 
 afterAll(async () => {
@@ -21,7 +33,7 @@ describe('User email uniqueness (admin role)', () => {
         name: 'Admin One',
         email: 'test@example.com',
         password: 'secret',
-        role: Role.ADMIN, // ⬅️ enum
+        role: Role.ADMIN,
       },
     });
 
@@ -46,7 +58,7 @@ describe('MenuItem relationships', () => {
         description: 'Cheesy and good',
         price: 30,
         imageUrl: 'https://via.placeholder.com/150',
-        category: Category.MAIN_COURSE, // ⬅️ enum
+        category: Category.MAIN_COURSE,
       },
     });
 
@@ -55,6 +67,7 @@ describe('MenuItem relationships', () => {
         rating: 5,
         comment: 'Delicious!',
         menuItem: { connect: { id: menuItem.id } },
+        user: { connect: { id: user.id } }, // ✅ user legat
       },
     });
 
@@ -98,6 +111,7 @@ describe('Cascade delete', () => {
         rating: 4,
         comment: 'Very good!',
         menuItem: { connect: { id: menuItem.id } },
+        user: { connect: { id: user.id } }, // ✅ user legat
       },
     });
 
