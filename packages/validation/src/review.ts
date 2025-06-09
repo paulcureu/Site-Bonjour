@@ -4,6 +4,7 @@ export const createReviewSchema = z.object({
   rating: z.number().int().min(1).max(5),
   comment: z.string().min(5),
   menuItemId: z.string().cuid(), // verificăm că e un id valid
+  userId: z.string().cuid(),
 });
 
 export const updateReviewSchema = createReviewSchema.partial();

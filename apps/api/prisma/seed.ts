@@ -56,20 +56,6 @@ async function main() {
     ),
   );
 
-  console.log('⭐ Creating reviews...');
-  await Promise.all(
-    Array.from({ length: 10 }).map(() => {
-      const menuItem = faker.helpers.arrayElement(dishes);
-      return prisma.review.create({
-        data: {
-          rating: faker.number.int({ min: 1, max: 5 }),
-          comment: faker.lorem.paragraph(),
-          menuItemId: menuItem.id,
-        },
-      });
-    }),
-  );
-
   console.log('👤 Creating users...');
 
   const adminEmail = 'admin@site.com';
@@ -94,6 +80,25 @@ async function main() {
     ],
     skipDuplicates: true,
   });
+
+  const customer = await prisma.user.findUniqueOrThrow({
+    where: { email: customerEmail },
+  });
+
+  console.log('⭐ Creating reviews...');
+  await Promise.all(
+    Array.from({ length: 10 }).map(() => {
+      const menuItem = faker.helpers.arrayElement(dishes);
+      return prisma.review.create({
+        data: {
+          rating: faker.number.int({ min: 1, max: 5 }),
+          comment: faker.lorem.paragraph(),
+          menuItemId: menuItem.id,
+          userId: customer.id, // 🔑 important!
+        },
+      });
+    }),
+  );
 
   console.log('✅ Seed completed!');
 }
