@@ -15,7 +15,9 @@
     "lint": "eslint . --ext .ts",
     "seed": "ts-node prisma/seed.ts",
     "studio:local": "powershell -Command \"$env:DATABASE_URL='postgresql://postgres:postgres@localhost:5432/site_db'; npx prisma studio\"",
-    "db:reset-and-seed:test": "ts-node scripts/setupTestDB.ts"
+    "db:reset-and-seed:test": "ts-node scripts/setupTestDB.ts",
+    "queue:add:reservation": "ts-node -r tsconfig-paths/register src/jobs/testReservationJob.ts",
+    "worker:reservation": "ts-node -r tsconfig-paths/register src/workers/reservationWorker.ts"
   },
   "keywords": [],
   "author": "",
