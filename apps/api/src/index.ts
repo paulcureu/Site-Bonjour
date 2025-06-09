@@ -10,6 +10,7 @@ import { swaggerSpec } from './utils/swagger';
 import { reservationRoutes } from './routes/reservationRoutes';
 import { reviewRoutes } from './routes/reviewRoutes';
 import { menuItemRoutes } from './routes/menuItemRoutes';
+import { mountBullBoard } from './routes/queueDashboard';
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use('/api/v1/reservations', reservationRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
 app.use('/api/v1/menu-items', menuItemRoutes);
 
+mountBullBoard(app);
 const port = Number(env.PORT);
 app.listen(Number(env.PORT), env.HOST, () => console.log(`✅ Server running on port ${port}`));

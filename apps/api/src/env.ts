@@ -7,6 +7,10 @@ interface EnvSchema {
   JWT_ACCESS_SECRET: string;
   JWT_REFRESH_SECRET: string;
   LOGTAIL_TOKEN: string;
+
+  REDIS_HOST: string;
+  REDIS_PORT: string;
+  REDIS_PASSWORD?: string;
 }
 
 export const env = envSchema<EnvSchema>({
@@ -27,6 +31,9 @@ export const env = envSchema<EnvSchema>({
       JWT_ACCESS_SECRET: { type: 'string' },
       JWT_REFRESH_SECRET: { type: 'string' },
       LOGTAIL_TOKEN: { type: 'string', default: '' }, // fallback OK
+      REDIS_HOST: { type: 'string', default: 'localhost' },
+      REDIS_PORT: { type: 'string', default: '6379' },
+      REDIS_PASSWORD: { type: 'string' },
     },
   },
   dotenv: true,
