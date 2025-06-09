@@ -11,7 +11,7 @@ import { reservationRoutes } from './routes/reservationRoutes';
 import { reviewRoutes } from './routes/reviewRoutes';
 import { menuItemRoutes } from './routes/menuItemRoutes';
 import { mountBullBoard } from './routes/queueDashboard';
-
+import debugRedis from './routes/debugRedis';
 const app = express();
 
 // 🟢 trebuie să fie primul!
@@ -25,6 +25,8 @@ app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/reservations', reservationRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
 app.use('/api/v1/menu-items', menuItemRoutes);
+
+app.use('/api/v1', debugRedis);
 
 mountBullBoard(app);
 const port = Number(env.PORT);
