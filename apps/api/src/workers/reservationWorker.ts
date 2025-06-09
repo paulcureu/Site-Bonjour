@@ -3,6 +3,7 @@ dotenv.config(); // încarcă .env
 
 import { Worker } from 'bullmq';
 import { env } from '../env';
+import { sendReservationEmail } from '../lib/email';
 
 // 👇 definim worker-ul
 const reservationWorker = new Worker(
@@ -17,7 +18,7 @@ const reservationWorker = new Worker(
     console.log('⏰ Ora:', data.time);
     console.log('👥 Nr persoane:', data.guests);
 
-    // ✉️ Aici poți adăuga logica de trimitere email (ex: cu nodemailer)
+    await sendReservationEmail(data.email, data.name, data.date, data.time, data.guests);
   },
   {
     connection: {
