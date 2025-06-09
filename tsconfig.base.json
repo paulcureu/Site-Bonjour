@@ -1,0 +1,20 @@
+// site-bonjour/tsconfig.base.json
+{
+  "compilerOptions": {
+    /* setup de bază */
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+
+    /*  IMPORTANT  */
+    "baseUrl": ".",
+    "paths": {
+      "@shared/validation": ["packages/validation/src/index.ts"]
+    }
+  }
+}
