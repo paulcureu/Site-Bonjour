@@ -1,7 +1,6 @@
-// src/routes/queueDashboard.ts
 import express, { Express } from 'express';
 import { createBullBoard } from '@bull-board/api';
-import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // ✅ sub-modul corect
+import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 
 import { reservationQueue } from '@/queues/reservationQueue';

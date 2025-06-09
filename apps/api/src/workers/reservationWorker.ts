@@ -2,10 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config(); // încarcă .env
 
 import { Worker } from 'bullmq';
-import { env } from '../env';
 import { sendReservationEmail } from '../lib/email';
 
-// 👇 definim worker-ul
 const reservationWorker = new Worker(
   'sendReservationEmail',
   async job => {
@@ -22,9 +20,7 @@ const reservationWorker = new Worker(
   },
   {
     connection: {
-      host: env.REDIS_HOST,
-      port: Number(env.REDIS_PORT),
-      password: env.REDIS_PASSWORD,
+      url: process.env.REDIS_URL!,
     },
   },
 );
