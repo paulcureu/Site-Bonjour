@@ -7,6 +7,7 @@
     "build": "pnpm prisma generate && tsc && tsc-alias",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn -r tsconfig-paths/register src/index.ts",
+    "db:push": "prisma db push --schema=prisma/schema.prisma",
     "db:push:test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test prisma db push --force-reset --schema=prisma/schema.prisma",
     "seed:test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test ts-node prisma/seed.ts",
     "test": "pnpm exec cross-env DOTENV_CONFIG_PATH=.env.test jest --coverage",
