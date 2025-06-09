@@ -14,8 +14,9 @@
     /*  IMPORTANT  */
     "baseUrl": ".",
     "paths": {
-      "@shared/validation": ["packages/validation/src/index.ts"],
-      "@/*": ["apps/api/src/*"]
+      "@shared/validation":       ["packages/validation/src/index.ts"],
+      "@shared/validation/*":     ["packages/validation/src/*"],
+      "@/*":                      ["apps/api/src/*"]
     }
   }
 }

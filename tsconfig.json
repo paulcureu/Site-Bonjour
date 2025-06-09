@@ -1,5 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
   "files": [],
-  "include": ["apps", "packages"]
+  "references": [
+    { "path": "packages/validation" },
+    { "path": "apps/api" }
+  ]
 }
