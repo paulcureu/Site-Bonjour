@@ -40,7 +40,8 @@
     "parse-json": "^8.3.0",
     "prettier": "^3.5.3",
     "ts-jest": "^29.3.4",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
