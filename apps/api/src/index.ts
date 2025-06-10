@@ -30,8 +30,9 @@ app.use('/api/v1', debugRedis);
 
 mountBullBoard(app);
 const port = Number(env.PORT);
-const host = '0.0.0.0';
+const isProduction = process.env.NODE_ENV === 'production';
+const host = isProduction ? '0.0.0.0' : 'localhost';
 
 app.listen(port, host, () => {
-  console.log(`✅ Server running on http://${host}:${port}`);
+  console.log(`✅ Server running on http://${host}:${port}/api/v1/status`);
 });
