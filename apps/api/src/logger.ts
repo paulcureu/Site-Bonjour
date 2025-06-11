@@ -1,5 +1,4 @@
 import winston from 'winston';
-import { env } from './env';
 
 // Comentăm importurile Logtail, ca să oprim trimiterea de loguri la Logtail
 // import { Logtail } from '@logtail/node'

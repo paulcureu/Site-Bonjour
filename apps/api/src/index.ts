@@ -3,7 +3,6 @@ import authRoutes from './routes/auth';
 import statusRoutes from './routes/status';
 import adminRoutes from './routes/dashboard';
 // ­–––– DEBUG: afișează toate rutele încărcate ––––
-import listEndpoints from 'express-list-endpoints';
 import { env } from './env';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './utils/swagger';

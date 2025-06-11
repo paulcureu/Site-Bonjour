@@ -31,8 +31,8 @@ export async function resetPasswordHandler(req: Request, res: Response): Promise
     });
 
     res.json({ message: 'Password has been reset successfully' });
-  } catch (err) {
-    res.status(400).json({ error: 'Invalid or expired token' });
+  } catch {
+    res.status(400).json({ _err: 'Invalid or expired token' });
   }
 }
 

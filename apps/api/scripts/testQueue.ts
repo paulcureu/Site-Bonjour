@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error: dotenv might not have type definitions, or its types conflict with other dependencies.
 import dotenv from 'dotenv';
 dotenv.config();
 

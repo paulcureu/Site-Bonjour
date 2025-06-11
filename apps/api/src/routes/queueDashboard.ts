@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import { Express } from 'express';
 import { createBullBoard } from '@bull-board/api';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { ExpressAdapter } from '@bull-board/express';

@@ -23,7 +23,7 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction): void =
       return;
     }
 
-    (req as any).user = payload; // optional: expose user to downstream handlers
+    req.user = payload; // optional: expose user to downstream handlers
     next();
   } catch (err) {
     console.error('[isAdmin] JWT error', err);
