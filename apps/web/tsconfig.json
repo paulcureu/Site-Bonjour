@@ -1,7 +1,32 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  // If you already extend a base tsconfig, keep that line:
+  "extends": "../../tsconfig.base.json",
+
+  // ✨ Compiler options specific to the React app
+  "compilerOptions": {
+    /* Build output */
+    "rootDir": "src",
+    "outDir": "dist",
+
+    /* Path alias so '@/…' points to src/ */
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+
+    /* Usual React / TS settings */
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+
+  /* Tell TS which source files to include */
+  "include": ["src"]
 }
