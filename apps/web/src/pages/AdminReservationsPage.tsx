@@ -1,0 +1,1 @@
+export default function AdminReservationsPage() { return <h2>Listă Rezervări</h2>; }

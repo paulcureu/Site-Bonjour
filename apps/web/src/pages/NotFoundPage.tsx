@@ -1,0 +1,1 @@
+export default function NotFoundPage() { return <h1>404 - Pagina nu a fost găsită</h1>; }

@@ -1,9 +1,16 @@
+import { Outlet } from 'react-router-dom';
+
 function App() {
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold underline text-blue-500">
-        Hello, Tailwind!
-      </h1>
+    <div>
+
+      <nav className="p-4 bg-gray-800 text-white">
+        App Navigation - <a href="/menu">Menu</a> - <a href="/admin">Admin</a>
+      </nav>
+
+      <main className="p-4">
+        <Outlet />
+      </main>
     </div>
   )
 }
