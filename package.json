@@ -8,7 +8,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm --filter ./apps/api dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
     "lint": "eslint . --ext .ts",
     "build": "pnpm -r build",
     "prepare": "husky install",
