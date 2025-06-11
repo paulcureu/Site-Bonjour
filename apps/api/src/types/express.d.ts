@@ -1,16 +1,19 @@
-// apps/api/src/types/express.d.ts
-
-// Definește cum arată payload-ul pe care îl pui tu în token
-interface JwtPayload {
-  sub: string;
-  email: string;
-  role: 'ADMIN' | 'PUBLIC';
-}
+/**
+ * Extends Express.Request so `req.user` is available everywhere,
+ * with `role` OPTIONAL to match what the JWT might actually deliver.
+ */
+import 'express';
 
 declare global {
   namespace Express {
-    export interface Request {
-      user?: JwtPayload; // proprietatea 'user' este opțională și are tipul JwtPayload
+    interface Request {
+      user?: {
+        sub: string;
+        email: string;
+        role?: string; // <- optional
+      };
     }
   }
 }
+
+export {}; // makes this a module
