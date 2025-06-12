@@ -1,25 +1,32 @@
+// apps/api/src/jobs/testReservationJob.ts
+
 import { Queue } from 'bullmq';
 import { env } from '../env';
+import IORedis from 'ioredis';
 
-const queue = new Queue('sendReservationEmail', {
-  connection: {
-    host: env.REDIS_HOST,
-    port: Number(env.REDIS_PORT),
-    password: env.REDIS_PASSWORD,
-  },
+const connection = new IORedis(env.REDIS_URL, {
+  maxRetriesPerRequest: null,
 });
 
-async function main() {
-  await queue.add('send-reservation', {
-    email: 'you@example.com',
-    name: 'Paul',
-    date: '2025-06-10',
-    time: '19:00',
-    guests: 2,
-  });
+const testQueue = new Queue('sendReservationEmail', {
+  connection: connection,
+});
 
-  console.log('✅ Job de test adăugat în coadă.');
-  await queue.close();
+async function addTestJob() {
+  try {
+    console.log('Adăugare job de test în coadă...');
+    await testQueue.add('sendConfirmationEmail', {
+      recipientEmail: 'test@example.com',
+      name: 'Client Test',
+      reservationId: 'test-12345',
+    });
+    console.log('✅ Job de test adăugat cu succes.');
+  } catch (error) {
+    console.error('❌ Eroare la adăugarea job-ului de test:', error);
+  } finally {
+    await testQueue.close();
+    await connection.quit();
+  }
 }
 
-main();
+addTestJob();
