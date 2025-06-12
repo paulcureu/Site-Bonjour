@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../lib/prisma';
-import { createReviewSchema, updateReviewSchema } from '@shared/validation';
+import { createReviewSchema, updateReviewSchema } from '../validation';
 
 export const getAllReviews = async (
   _req: Request,
