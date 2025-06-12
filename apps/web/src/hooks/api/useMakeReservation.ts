@@ -1,7 +1,7 @@
 // src/hooks/api/useMakeReservation.ts
 import { useMutation } from '@tanstack/react-query';
 import apiClient from '@/api/apiClient';
-import { createReservationSchema } from '@shared/validation';
+import { createReservationSchema } from '@/validation';
 import { z } from 'zod';
 
 type ReservationInput = z.infer<typeof createReservationSchema>;
