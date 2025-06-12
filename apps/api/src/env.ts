@@ -1,7 +1,5 @@
-// apps/api/src/env.ts
 import envSchema from 'env-schema';
 
-// Am adăugat noile variabile pentru SMTP
 interface EnvSchema {
   PORT: string;
   HOST: string;
@@ -9,9 +7,8 @@ interface EnvSchema {
   JWT_ACCESS_SECRET: string;
   JWT_REFRESH_SECRET: string;
   LOGTAIL_TOKEN: string;
-  REDIS_HOST: string;
-  REDIS_PORT: string;
-  REDIS_PASSWORD?: string;
+  // --- CORECȚIE: Folosim o singură variabilă pentru Redis ---
+  REDIS_URL: string;
   SMTP_HOST: string;
   SMTP_PORT: string;
   SMTP_USER: string;
@@ -29,6 +26,7 @@ export const env = envSchema<EnvSchema>({
       'JWT_ACCESS_SECRET',
       'JWT_REFRESH_SECRET',
       'LOGTAIL_TOKEN',
+      'REDIS_URL',
       'SMTP_HOST',
       'SMTP_PORT',
       'SMTP_USER',
@@ -42,10 +40,7 @@ export const env = envSchema<EnvSchema>({
       JWT_ACCESS_SECRET: { type: 'string' },
       JWT_REFRESH_SECRET: { type: 'string' },
       LOGTAIL_TOKEN: { type: 'string', default: '' },
-      REDIS_HOST: { type: 'string', default: 'localhost' },
-      REDIS_PORT: { type: 'string', default: '6379' },
-      REDIS_PASSWORD: { type: 'string' },
-      // --- Adăugăm proprietățile pentru SMTP ---
+      REDIS_URL: { type: 'string' },
       SMTP_HOST: { type: 'string' },
       SMTP_PORT: { type: 'string' },
       SMTP_USER: { type: 'string' },

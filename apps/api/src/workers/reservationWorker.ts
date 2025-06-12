@@ -1,16 +1,13 @@
 import { Worker, Job } from 'bullmq';
 import { sendReservationEmail } from '../lib/email';
 import { env } from '../env';
-// Importăm ioredis
 import IORedis from 'ioredis';
 
-// Interfața datelor din job
 interface ReservationJobData {
   recipientEmail: string;
   name: string;
 }
 
-// Funcția care procesează job-ul
 const processReservationJob = async (job: Job<ReservationJobData>) => {
   console.log(`[Worker] Procesare job #${job.id}.`);
   const { recipientEmail, name } = job.data;
@@ -20,15 +17,10 @@ const processReservationJob = async (job: Job<ReservationJobData>) => {
   await sendReservationEmail(recipientEmail, name);
 };
 
-// --- CORECȚIE: Creăm o instanță IORedis pentru conexiune ---
-const connection = new IORedis({
-  host: env.REDIS_HOST,
-  port: Number(env.REDIS_PORT),
-  password: env.REDIS_PASSWORD,
-  maxRetriesPerRequest: null, // O opțiune recomandată de BullMQ
+const connection = new IORedis(env.REDIS_URL, {
+  maxRetriesPerRequest: null,
 });
 
-// Creăm worker-ul și îi dăm instanța de conexiune
 export const reservationWorker = new Worker<ReservationJobData>(
   'sendReservationEmail',
   processReservationJob,
