@@ -1,34 +1,45 @@
-import dotenv from 'dotenv';
-dotenv.config(); // încarcă .env
-
-import { Worker } from 'bullmq';
+import { Worker, Job } from 'bullmq';
 import { sendReservationEmail } from '../lib/email';
+import { env } from '../env';
+// Importăm ioredis
+import IORedis from 'ioredis';
 
-const reservationWorker = new Worker(
+// Interfața datelor din job
+interface ReservationJobData {
+  recipientEmail: string;
+  name: string;
+}
+
+// Funcția care procesează job-ul
+const processReservationJob = async (job: Job<ReservationJobData>) => {
+  console.log(`[Worker] Procesare job #${job.id}.`);
+  const { recipientEmail, name } = job.data;
+  if (!recipientEmail) {
+    throw new Error(`[Worker] Job #${job.id} nu are un destinatar valid.`);
+  }
+  await sendReservationEmail(recipientEmail, name);
+};
+
+// --- CORECȚIE: Creăm o instanță IORedis pentru conexiune ---
+const connection = new IORedis({
+  host: env.REDIS_HOST,
+  port: Number(env.REDIS_PORT),
+  password: env.REDIS_PASSWORD,
+  maxRetriesPerRequest: null, // O opțiune recomandată de BullMQ
+});
+
+// Creăm worker-ul și îi dăm instanța de conexiune
+export const reservationWorker = new Worker<ReservationJobData>(
   'sendReservationEmail',
-  async job => {
-    const data = job.data;
-
-    console.log('📨 Procesăm rezervarea...');
-    console.log('👤 Nume:', data.name);
-    console.log('📧 Email:', data.email);
-    console.log('📅 Data:', data.date);
-    console.log('⏰ Ora:', data.time);
-    console.log('👥 Nr persoane:', data.guests);
-
-    await sendReservationEmail(data.email, data.name, data.date, data.time, data.guests);
-  },
+  processReservationJob,
   {
-    connection: {
-      url: process.env.REDIS_URL!,
-    },
+    connection: connection,
+    concurrency: 5,
   },
 );
 
-reservationWorker.on('completed', job => {
-  console.log(`✅ Job ${job.id} procesat cu succes`);
-});
+console.log('✅ Worker-ul pentru rezervări a pornit și ascultă coada.');
 
 reservationWorker.on('failed', (job, err) => {
-  console.error(`❌ Job ${job?.id} a eșuat:`, err);
+  console.error(`[Worker] Job-ul #${job?.id} a eșuat cu eroarea: ${err.message}`);
 });

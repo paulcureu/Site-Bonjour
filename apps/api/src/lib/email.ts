@@ -1,62 +1,41 @@
 import nodemailer from 'nodemailer';
+import mjml from 'mjml';
+import fs from 'fs/promises';
+import path from 'path';
+import Handlebars from 'handlebars';
+import { env } from '../env';
 
-export async function sendResetPasswordEmail(to: string, link: string) {
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '2525'),
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+// Creăm un "transportor" reutilizabil
+const transporter = nodemailer.createTransport({
+  host: env.SMTP_HOST,
+  // CORECȚIE: Nodemailer se așteaptă ca portul să fie de tip Number.
+  port: Number(env.SMTP_PORT),
+  // secure: true // decomentează dacă folosești portul 465 (ex: pt. Gmail)
+  auth: {
+    user: env.SMTP_USER,
+    pass: env.SMTP_PASS,
+  },
+});
 
-  const html = `
-    <h2>Resetare parolă</h2>
-    <p>Ai cerut resetarea parolei. Apasă pe linkul de mai jos:</p>
-    <a href="${link}">${link}</a>
-    <p>Dacă nu ai cerut acest lucru, ignoră acest email.</p>
-  `;
+console.log('✅ Nodemailer transport-ul a fost configurat.');
 
-  await transporter.sendMail({
-    from: '"Site Bonjour" <noreply@site-bonjour.com>',
-    to,
-    subject: '🔐 Resetare parolă',
-    html,
-  });
-}
+// Funcția de trimitere a email-ului pentru rezervare
+export async function sendReservationEmail(to: string, name: string) {
+  try {
+    const templatePath = path.join(__dirname, '../templates/reservationConfirmation.mjml');
+    const mjmlTemplate = await fs.readFile(templatePath, 'utf-8');
+    const template = Handlebars.compile(mjmlTemplate);
+    const mjmlContent = template({ name: name });
+    const { html } = mjml(mjmlContent);
 
-export async function sendReservationEmail(
-  to: string,
-  name: string,
-  date: string,
-  time: string,
-  guests: number,
-) {
-  const html = `
-    <h2>Confirmare rezervare</h2>
-    <p>Salut, ${name}!</p>
-    <p>Rezervarea ta a fost înregistrată pentru:</p>
-    <ul>
-      <li><strong>Data:</strong> ${date}</li>
-      <li><strong>Ora:</strong> ${time}</li>
-      <li><strong>Nr. persoane:</strong> ${guests}</li>
-    </ul>
-    <p>Îți mulțumim că ai ales Restaurantul Bonjour!</p>
-  `;
-
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '2525'),
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-
-  await transporter.sendMail({
-    from: '"Site Bonjour" <noreply@site-bonjour.com>',
-    to,
-    subject: '📅 Confirmare rezervare',
-    html,
-  });
+    await transporter.sendMail({
+      from: env.EMAIL_FROM,
+      to: to,
+      subject: '✔ Rezervare confirmată la Restaurant Bonjour',
+      html: html,
+    });
+  } catch (error) {
+    console.error('Eroare în funcția sendReservationEmail:', error);
+    throw error;
+  }
 }
