@@ -12,12 +12,24 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "@radix-ui/react-slot": "^1.2.3",
     "@tanstack/react-query": "^5.80.6",
+    "@tanstack/react-query-devtools": "^5.80.7",
     "axios": "^1.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.17.0",
+    "lucide-react": "^0.514.0",
     "react": "^19.1.0",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "react-hook-form": "^7.57.0",
+    "react-hot-toast": "^2.5.2",
+    "react-router-dom": "^7.6.2",
+    "tailwind-merge": "^3.3.1",
+    "usehooks-ts": "^3.1.1",
+    "zod": "^3.25.63"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.0",

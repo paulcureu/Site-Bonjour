@@ -1,4 +1,3 @@
-// packages/validation/src/index.ts
-export * from './menuItem';
-export * from './reservation';
-export * from './review';
+export * from './menuItem.js';
+export * from './reservation.js';
+export * from './review.js';

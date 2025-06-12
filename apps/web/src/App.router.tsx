@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { PublicLayout } from './layouts/PublicLayout';
 import { AdminLayout } from './layouts/AdminLayout';
+import { ReservationPage } from './pages/ReservationPage';
+
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // (Lazy Loading)
@@ -20,6 +22,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: 'menu', element: <MenuPage /> },
+      { path: 'rezervari', element: <ReservationPage /> },
     ],
   },
   {

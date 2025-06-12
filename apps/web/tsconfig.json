@@ -9,9 +9,9 @@
     "outDir": "dist",
 
     /* Path alias so '@/…' points to src/ */
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"]
     },
 
     /* Usual React / TS settings */

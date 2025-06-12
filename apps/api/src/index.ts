@@ -11,11 +11,19 @@ import { reviewRoutes } from './routes/reviewRoutes';
 import { menuItemRoutes } from './routes/menuItemRoutes';
 import { mountBullBoard } from './routes/queueDashboard';
 import debugRedis from './routes/debugRedis';
+import cors from 'cors';
+
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  optionsSuccessStatus: 200,
+};
 // 🟢 trebuie să fie primul!
 app.use(express.json());
 
+//ruta cors
+app.use(cors(corsOptions));
 // 🟢 rute API
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/status', statusRoutes);
