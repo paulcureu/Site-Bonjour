@@ -13,4 +13,4 @@ router.post('/', createReservation);
 router.put('/:id', updateReservation);
 router.delete('/:id', deleteReservation);
 
-export { router as reservationRoutes };
+export const reservationRoutes = router;
