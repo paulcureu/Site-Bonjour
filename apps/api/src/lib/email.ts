@@ -5,12 +5,9 @@ import path from 'path';
 import Handlebars from 'handlebars';
 import { env } from '../env';
 
-// Creăm un "transportor" reutilizabil
 const transporter = nodemailer.createTransport({
   host: env.SMTP_HOST,
-  // CORECȚIE: Nodemailer se așteaptă ca portul să fie de tip Number.
   port: Number(env.SMTP_PORT),
-  // secure: true // decomentează dacă folosești portul 465 (ex: pt. Gmail)
   auth: {
     user: env.SMTP_USER,
     pass: env.SMTP_PASS,
@@ -19,7 +16,6 @@ const transporter = nodemailer.createTransport({
 
 console.log('✅ Nodemailer transport-ul a fost configurat.');
 
-// Funcția de trimitere a email-ului pentru rezervare
 export async function sendReservationEmail(to: string, name: string) {
   try {
     const templatePath = path.join(__dirname, '../templates/reservationConfirmation.mjml');
@@ -38,4 +34,20 @@ export async function sendReservationEmail(to: string, name: string) {
     console.error('Eroare în funcția sendReservationEmail:', error);
     throw error;
   }
+}
+
+export async function sendResetPasswordEmail(to: string, link: string) {
+  const html = `
+    <h2>Resetare parolă</h2>
+    <p>Ați solicitat resetarea parolei. Apăsați pe linkul de mai jos pentru a continua:</p>
+    <a href="${link}" target="_blank" style="padding: 10px 20px; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px;">Resetează Parola</a>
+    <p>Dacă nu ați solicitat acest lucru, puteți ignora acest email.</p>
+  `;
+
+  await transporter.sendMail({
+    from: env.EMAIL_FROM,
+    to,
+    subject: '🔐 Resetare parolă',
+    html,
+  });
 }
