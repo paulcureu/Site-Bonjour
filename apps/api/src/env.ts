@@ -7,13 +7,14 @@ interface EnvSchema {
   JWT_ACCESS_SECRET: string;
   JWT_REFRESH_SECRET: string;
   LOGTAIL_TOKEN: string;
-  // --- CORECȚIE: Folosim o singură variabilă pentru Redis ---
+  // CORECȚIE: Revenim la REDIS_URL pentru a se potrivi cu Railway
   REDIS_URL: string;
-  SMTP_HOST: string;
-  SMTP_PORT: string;
-  SMTP_USER: string;
-  SMTP_PASS: string;
-  EMAIL_FROM: string;
+  // Adăugăm variabilele SMTP, dar le facem opționale pentru a nu crăpa serverul
+  SMTP_HOST?: string;
+  SMTP_PORT?: string;
+  SMTP_USER?: string;
+  SMTP_PASS?: string;
+  EMAIL_FROM?: string;
 }
 
 export const env = envSchema<EnvSchema>({
@@ -25,13 +26,7 @@ export const env = envSchema<EnvSchema>({
       'DATABASE_URL',
       'JWT_ACCESS_SECRET',
       'JWT_REFRESH_SECRET',
-      'LOGTAIL_TOKEN',
-      'REDIS_URL',
-      'SMTP_HOST',
-      'SMTP_PORT',
-      'SMTP_USER',
-      'SMTP_PASS',
-      'EMAIL_FROM',
+      'REDIS_URL', // Asigurăm că aceasta este obligatorie
     ],
     properties: {
       PORT: { type: 'string', default: '3000' },
@@ -41,6 +36,7 @@ export const env = envSchema<EnvSchema>({
       JWT_REFRESH_SECRET: { type: 'string' },
       LOGTAIL_TOKEN: { type: 'string', default: '' },
       REDIS_URL: { type: 'string' },
+      // Definim proprietățile SMTP
       SMTP_HOST: { type: 'string' },
       SMTP_PORT: { type: 'string' },
       SMTP_USER: { type: 'string' },

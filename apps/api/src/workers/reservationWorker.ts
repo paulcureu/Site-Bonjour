@@ -14,6 +14,7 @@ const processReservationJob = async (job: Job<ReservationJobData>) => {
   if (!recipientEmail) {
     throw new Error(`[Worker] Job #${job.id} nu are un destinatar valid.`);
   }
+  // Logica rămâne aceeași, apelăm funcția de email
   await sendReservationEmail(recipientEmail, name);
 };
 
