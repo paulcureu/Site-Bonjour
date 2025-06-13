@@ -26,7 +26,6 @@ export async function sendReservationEmail(to: string, name: string) {
   });
 }
 
-// --- CORECȚIE: Reintroducem funcția de resetare a parolei ---
 export async function sendResetPasswordEmail(to: string, link: string) {
   const html = `
         <h2>Resetare parolă</h2>
