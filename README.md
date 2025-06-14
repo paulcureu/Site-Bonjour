@@ -30,6 +30,9 @@ The app delivers a complete experience for both customers and restaurant adminis
 - **Performance & SEO**: PWA-ready, lazy-loading, and dynamic SEO best practices (meta-tags, sitemap).
 
 ---
+#API Documentation 
+
+https://site-bonjourback-end-production.up.railway.app/api-docs/
 
 ## 🚀 Tech Stack
 
